@@ -23,7 +23,7 @@ suppressPackageStartupMessages({
 # --- Input arguments ---
 parse_args <- function() {
   args <- commandArgs(trailingOnly = TRUE)
-  cfg <- list(meta = NULL, counts = NULL, ruvs = NULL, gtf = NULL, out_dir = "results/VEL_PD", cores = "8")
+  cfg <- list(meta = NULL, counts = NULL, ruvs = NULL, gtf = NULL, out_dir = "results/VEL_PD_sensitivity_UPDRSIII", cores = "8")
   if (length(args) %% 2 != 0) stop("Arguments must be supplied as --key value pairs.")
   if (length(args) > 0) {
     for (i in seq(1, length(args), by = 2)) {

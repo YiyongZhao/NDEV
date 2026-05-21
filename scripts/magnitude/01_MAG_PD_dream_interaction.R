@@ -31,13 +31,8 @@ parse_args <- function() {
   args <- commandArgs(trailingOnly = TRUE)
   cfg <- list(meta = NULL, counts = NULL, ruvs = NULL, out_dir = "results/MAG_PD", cores = "8")
 
-  if (length(args) == 3 && !grepl("^--", args[1])) {
-    cfg$meta <- args[1]
-    cfg$counts <- args[2]
-    cfg$cores <- args[3]
-    cfg$ruvs <- "../../RUVs_PCA_output/RUVs_W_factors_k3_all_samples.tsv"
-  } else {
-    if (length(args) %% 2 != 0) stop("Arguments must be supplied as --key value pairs.")
+  if (length(args) %% 2 != 0) stop("Arguments must be supplied as --key value pairs.")
+  if (length(args) > 0) {
     for (i in seq(1, length(args), by = 2)) {
       key <- sub("^--", "", args[i])
       key <- gsub("-", "_", key)

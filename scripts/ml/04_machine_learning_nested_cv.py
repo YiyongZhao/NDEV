@@ -116,6 +116,12 @@ def parse_args():
     parser.add_argument("--gene-map", required=True, help="GENCODE/Ensembl gene annotation table.")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--p-thresh", type=float, default=0.05)
+    parser.add_argument(
+        "--candidate-set-note",
+        default="external_or_prespecified",
+        choices=["external_or_prespecified", "same_cohort_exploratory"],
+        help="Documents the origin of DEG candidate feature tables; this does not change model behavior."
+    )
     parser.add_argument("--outer-folds", type=int, default=5)
     parser.add_argument("--inner-folds", type=int, default=5)
     parser.add_argument("--lasso-c", type=float, default=0.1)
@@ -143,6 +149,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 SEED = ARGS.seed
 P_VAL_THRESH = ARGS.p_thresh
+CANDIDATE_SET_NOTE = ARGS.candidate_set_note
 POS_LABEL = "Parkinson's Disease"
 N_OUTER_FOLDS = ARGS.outer_folds
 N_INNER_FOLDS = ARGS.inner_folds
@@ -165,12 +172,15 @@ if INCLUDE_SLOW_MODELS:
 
 log(f"Output: {OUTPUT_DIR}")
 log(f"Models: {MODELS_TO_RUN}")
+log(f"Candidate-set origin: {CANDIDATE_SET_NOTE}")
 log(f"Strategy: NaN-fill + median imputation + missing indicator (allow={ALLOW_MISSING_INDICATORS})")
 log(f"CV: {N_OUTER_FOLDS}-fold outer x {N_INNER_FOLDS}-fold inner nested CV")
 log(f"Pipeline: imputer -> scaler -> SimpleLassoSelector(C={FIXED_LASSO_C}) -> classifier")
 log("Grid search: manual group-aware implementation")
 log(f"SHAP: bg={SHAP_BG_SAMPLES}, max_test={SHAP_MAX_TEST}, nsamples={SHAP_NSAMPLES}")
 log("SHAP: fixed to best_algo and aggregated across all outer folds")
+log("Feature-screening note: DEG tables are treated as pre-specified external candidate feature sets.")
+log("Do not generate DEG candidate tables using labels from held-out CV folds.")
 
 def seed_everything(seed=42):
     random.seed(seed)

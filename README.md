@@ -26,6 +26,9 @@ config/
   input_paths.template.sh
 docs/
   reproducibility.md
+  input_output_manifest.md
+LICENSE
+CITATION.cff
 ```
 
 ## Main analysis scripts
@@ -103,6 +106,8 @@ WB/1014_WB_Neutrophil_Final_DEGs_DREAM_PD_vs_Control.tsv
 WB_EV_match_ID.tsv
 ```
 
+**Feature-screening note.** DEG tables are treated as external or pre-specified candidate feature sets. If DEG candidate tables are generated from the same labels used in cross-validation, the DEG screening step should be moved inside each outer training fold to avoid feature-selection leakage.
+
 ## Software
 
 A conda environment template is provided:
@@ -118,8 +123,8 @@ Python packages: `pandas`, `numpy`, `scipy`, `statsmodels`, `scikit-learn`, `mat
 
 ## Notes
 
-- The primary VELOCITY analysis uses **MDS-UPDRS Total Score**.
-- The sensitivity VELOCITY analysis uses **MDS-UPDRS Part III**.
+- The primary VELOCITY analysis uses **MDS-UPDRS Total Score** and corresponds to the 103-gene primary VELOCITY set reported in the study.
+- The sensitivity VELOCITY analysis uses **MDS-UPDRS Part III** and corresponds to the 124-gene sensitivity VELOCITY set reported in the study.
 - MAG_PD uses **MDS-UPDRS Part III** for motor coupling and MoCA for cognitive coupling.
 - All scripts use fixed random seeds where applicable.
 - Output directories are intentionally excluded from version control.
