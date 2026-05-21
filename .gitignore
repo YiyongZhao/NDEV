@@ -1,0 +1,28 @@
+# Data and analysis outputs
+data/
+results/
+output/
+outputs/
+*.rds
+*.RData
+*.bam
+*.bai
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Local config
+config/input_paths.sh
+.env

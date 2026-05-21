@@ -1,0 +1,33 @@
+name: ndev-analysis
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python>=3.10
+  - r-base>=4.3
+  - r-data.table
+  - r-dplyr
+  - r-tidyr
+  - r-lme4
+  - bioconductor-edger
+  - bioconductor-limma
+  - bioconductor-variancepartition
+  - bioconductor-biocparallel
+  - pandas
+  - numpy
+  - scipy
+  - statsmodels
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - shap
+  - joblib
+  - xgboost
+  - lightgbm
+  - pip
+  - pip:
+      - adjustText
+      - catboost
+      - interpret
+      - pytorch-tabnet
