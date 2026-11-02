@@ -26,3 +26,6 @@ venv/
 # Local config
 config/input_paths.sh
 .env
+
+# macOS
+.DS_Store
